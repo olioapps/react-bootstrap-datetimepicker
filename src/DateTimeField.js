@@ -53,26 +53,28 @@ export default class DateTimeField extends Component {
   }
 
   state = {
-      showDatePicker: this.props.mode !== Constants.MODE_TIME,
-      showTimePicker: this.props.mode === Constants.MODE_TIME,
-      inputFormat: this.resolvePropsInputFormat(),
-      buttonIcon: this.props.mode === Constants.MODE_TIME ? "glyphicon-time" : "glyphicon-calendar",
-      widgetStyle: {
-        display: "block",
-        position: "absolute",
-        left: -9999,
-        zIndex: "9999 !important"
-      },
-      viewDate: moment(this.props.dateTime, this.props.format, true).startOf("month"),
-      selectedDate: moment(this.props.dateTime, this.props.format, true),
-      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText : moment(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
+    showDatePicker: this.props.mode !== Constants.MODE_TIME,
+    showTimePicker: this.props.mode === Constants.MODE_TIME,
+    inputFormat: this.resolvePropsInputFormat(),
+    buttonIcon: this.props.mode === Constants.MODE_TIME ? "glyphicon-time" : "glyphicon-calendar",
+    widgetStyle: {
+      display: "block",
+      position: "absolute",
+      left: -9999,
+      zIndex: "9999 !important"
+    },
+    viewDate: moment(this.props.dateTime, this.props.format, true).startOf("month"),
+    selectedDate: moment(this.props.dateTime, this.props.format, true),
+    inputValue: typeof this.props.defaultText !== "undefined"
+      ? this.props.defaultText + " TEST!"
+      : moment(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
   }
 
   componentWillReceiveProps = (nextProps) => {
     let state = {};
     if (nextProps.inputFormat !== this.props.inputFormat) {
-        state.inputFormat = nextProps.inputFormat;
-        state.inputValue = moment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
+      state.inputFormat = nextProps.inputFormat;
+      state.inputValue = moment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
     }
 
     if (nextProps.dateTime !== this.props.dateTime && moment(nextProps.dateTime, nextProps.format, true).isValid()) {
@@ -96,7 +98,7 @@ export default class DateTimeField extends Component {
 
     return this.setState({
       inputValue: value
-    }, function() {
+    }, function () {
       return this.props.onChange(moment(this.state.inputValue, this.state.inputFormat, true).format(this.props.format), value);
     });
 
@@ -115,7 +117,7 @@ export default class DateTimeField extends Component {
       else month = this.state.viewDate.month();
       return this.setState({
         selectedDate: this.state.viewDate.clone().month(month).date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
-      }, function() {
+      }, function () {
         this.closePicker();
         this.props.onChange(this.state.selectedDate.format(this.props.format));
         return this.setState({
@@ -128,7 +130,7 @@ export default class DateTimeField extends Component {
   setSelectedHour = (e) => {
     return this.setState({
       selectedDate: this.state.selectedDate.clone().hour(parseInt(e.target.innerHTML)).minute(this.state.selectedDate.minutes())
-    }, function() {
+    }, function () {
       this.closePicker();
       this.props.onChange(this.state.selectedDate.format(this.props.format));
       return this.setState({
@@ -140,7 +142,7 @@ export default class DateTimeField extends Component {
   setSelectedMinute = (e) => {
     return this.setState({
       selectedDate: this.state.selectedDate.clone().hour(this.state.selectedDate.hours()).minute(parseInt(e.target.innerHTML))
-    }, function() {
+    }, function () {
       this.closePicker();
       this.props.onChange(this.state.selectedDate.format(this.props.format));
       return this.setState({
@@ -164,7 +166,7 @@ export default class DateTimeField extends Component {
   addMinute = () => {
     return this.setState({
       selectedDate: this.state.selectedDate.clone().add(1, "minutes")
-    }, function() {
+    }, function () {
       this.props.onChange(this.state.selectedDate.format(this.props.format));
       return this.setState({
         inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
@@ -175,7 +177,7 @@ export default class DateTimeField extends Component {
   addHour = () => {
     return this.setState({
       selectedDate: this.state.selectedDate.clone().add(1, "hours")
-    }, function() {
+    }, function () {
       this.props.onChange(this.state.selectedDate.format(this.props.format));
       return this.setState({
         inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
@@ -302,7 +304,7 @@ export default class DateTimeField extends Component {
   }
 
   closePicker = () => {
-    let style = {...this.state.widgetStyle};
+    let style = { ...this.state.widgetStyle };
     style.left = -9999;
     style.display = "none";
     return this.setState({
@@ -340,47 +342,47 @@ export default class DateTimeField extends Component {
 
   render() {
     return (
-          <div>
-            {this.renderOverlay()}
-            <DateTimePicker
-                  addDecade={this.addDecade}
-                  addHour={this.addHour}
-                  addMinute={this.addMinute}
-                  addMonth={this.addMonth}
-                  addYear={this.addYear}
-                  daysOfWeekDisabled={this.props.daysOfWeekDisabled}
-                  maxDate={this.props.maxDate}
-                  minDate={this.props.minDate}
-                  mode={this.props.mode}
-                  ref="widget"
-                  selectedDate={this.state.selectedDate}
-                  setSelectedDate={this.setSelectedDate}
-                  setSelectedHour={this.setSelectedHour}
-                  setSelectedMinute={this.setSelectedMinute}
-                  setViewMonth={this.setViewMonth}
-                  setViewYear={this.setViewYear}
-                  showDatePicker={this.state.showDatePicker}
-                  showTimePicker={this.state.showTimePicker}
-                  showToday={this.props.showToday}
-                  subtractDecade={this.subtractDecade}
-                  subtractHour={this.subtractHour}
-                  subtractMinute={this.subtractMinute}
-                  subtractMonth={this.subtractMonth}
-                  subtractYear={this.subtractYear}
-                  togglePeriod={this.togglePeriod}
-                  togglePicker={this.togglePicker}
-                  viewDate={this.state.viewDate}
-                  viewMode={this.props.viewMode}
-                  widgetClasses={this.state.widgetClasses}
-                  widgetStyle={this.state.widgetStyle}
-            />
-            <div className={"input-group date " + this.size()} ref="datetimepicker">
-              <input className="form-control" onChange={this.onChange} type="text" value={this.state.inputValue} {...this.props.inputProps}/>
-              <span className="input-group-addon" onBlur={this.onBlur} onClick={this.onClick} ref="dtpbutton">
-                <span className={classnames("glyphicon", this.state.buttonIcon)} />
-              </span>
-            </div>
-          </div>
+      <div>
+        {this.renderOverlay()}
+        <DateTimePicker
+          addDecade={this.addDecade}
+          addHour={this.addHour}
+          addMinute={this.addMinute}
+          addMonth={this.addMonth}
+          addYear={this.addYear}
+          daysOfWeekDisabled={this.props.daysOfWeekDisabled}
+          maxDate={this.props.maxDate}
+          minDate={this.props.minDate}
+          mode={this.props.mode}
+          ref="widget"
+          selectedDate={this.state.selectedDate}
+          setSelectedDate={this.setSelectedDate}
+          setSelectedHour={this.setSelectedHour}
+          setSelectedMinute={this.setSelectedMinute}
+          setViewMonth={this.setViewMonth}
+          setViewYear={this.setViewYear}
+          showDatePicker={this.state.showDatePicker}
+          showTimePicker={this.state.showTimePicker}
+          showToday={this.props.showToday}
+          subtractDecade={this.subtractDecade}
+          subtractHour={this.subtractHour}
+          subtractMinute={this.subtractMinute}
+          subtractMonth={this.subtractMonth}
+          subtractYear={this.subtractYear}
+          togglePeriod={this.togglePeriod}
+          togglePicker={this.togglePicker}
+          viewDate={this.state.viewDate}
+          viewMode={this.props.viewMode}
+          widgetClasses={this.state.widgetClasses}
+          widgetStyle={this.state.widgetStyle}
+        />
+        <div className={"input-group date " + this.size()} ref="datetimepicker">
+          <input className="form-control" onChange={this.onChange} type="text" value={this.state.inputValue} {...this.props.inputProps} />
+          <span className="input-group-addon" onBlur={this.onBlur} onClick={this.onClick} ref="dtpbutton">
+            <span className={classnames("glyphicon", this.state.buttonIcon)} />
+          </span>
+        </div>
+      </div>
     );
   }
 }

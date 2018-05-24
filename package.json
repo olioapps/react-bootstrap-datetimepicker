@@ -2,10 +2,10 @@
   "name": "react-bootstrap-datetimepicker",
   "version": "0.0.22",
   "description": "A bootstrap datetime picker component for React.js",
-  "homepage": "http://dev.quri.com/react-bootstrap-datetimepicker/",
+  "homepage": "https://github.com/olioapps/react-bootstrap-datetimepicker",
   "repository": {
     "type": "git",
-    "url": "http://github.com/quri/react-bootstrap-datetimepicker"
+    "url": "git+ssh://git@github.com/olioapps/react-bootstrap-datetimepicker.git"
   },
   "main": "./lib/DateTimeField.js",
   "scripts": {
@@ -23,7 +23,10 @@
     "datetimepicker",
     "datetime"
   ],
-  "author": "Loïc CHOLLIER <loic@chollier.com>",
+  "author": {
+    "name": "Loïc CHOLLIER",
+    "email": "loic@chollier.com"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": ">=0.14"
@@ -82,11 +85,37 @@
     "react-dom": "^0.14.2",
     "requirejs": "~2.1.9",
     "webpack": "^1.5.1",
+    "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
     "babel-runtime": "^5.6.18",
     "classnames": "^2.1.2",
     "moment": "^2.8.2"
-  }
+  },
+  "gitHead": "17fdec83b6f4c038faca04ee1368d23a405fa4ca",
+  "bugs": {
+    "url": "https://github.com/olioapps/react-bootstrap-datetimepicker/issues"
+  },
+  "_id": "react-bootstrap-datetimepicker@0.0.22",
+  "_shasum": "07e448d993157d049ad0876d0f9a3c9c5029d9c5",
+  "_from": "react-bootstrap-datetimepicker@>=0.0.22 <0.0.23",
+  "_npmVersion": "3.3.6",
+  "_nodeVersion": "5.0.0",
+  "_npmUser": {
+    "name": "chollier",
+    "email": "loic@chollier.com"
+  },
+  "maintainers": [
+    {
+      "name": "chollier",
+      "email": "loic@chollier.com"
+    }
+  ],
+  "dist": {
+    "shasum": "07e448d993157d049ad0876d0f9a3c9c5029d9c5",
+    "tarball": "https://registry.npmjs.org/react-bootstrap-datetimepicker/-/react-bootstrap-datetimepicker-0.0.22.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/react-bootstrap-datetimepicker/-/react-bootstrap-datetimepicker-0.0.22.tgz"
 }
