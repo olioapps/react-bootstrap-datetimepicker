@@ -136,7 +136,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      viewDate: (0, _moment2["default"])(this.props.dateTime, this.props.format, true).startOf("month"),
 	      selectedDate: (0, _moment2["default"])(this.props.dateTime, this.props.format, true),
-	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText : (0, _moment2["default"])(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
+	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText + " TEST!" : (0, _moment2["default"])(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
 	    };
 
 	    this.componentWillReceiveProps = function (nextProps) {
