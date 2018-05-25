@@ -65,24 +65,24 @@ export default class DateTimeField extends Component {
       left: -9999,
       zIndex: "9999 !important"
     },
-    viewDate: this.props.awMoment(this.props.dateTime, this.props.format, true).startOf("month"),
-    selectedDate: this.props.awMoment(this.props.dateTime, this.props.format, true),
+    viewDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).startOf("month"),
+    selectedDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()),
     inputValue: typeof this.props.defaultText !== "undefined"
       ? this.props.defaultText + "  ARONTEST!"
-      : this.props.awMoment(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
+      : this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
   }
 
   componentWillReceiveProps = (nextProps) => {
     let state = {};
     if (nextProps.inputFormat !== this.props.inputFormat) {
       state.inputFormat = nextProps.inputFormat;
-      state.inputValue = this.props.awMoment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
+      state.inputValue = this.props.awMoment(nextProps.dateTime, nextProps.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(nextProps.inputFormat);
     }
 
-    if (nextProps.dateTime !== this.props.dateTime && this.props.awMoment(nextProps.dateTime, nextProps.format, true).isValid()) {
-      state.viewDate = this.props.awMoment(nextProps.dateTime, nextProps.format, true).startOf("month");
-      state.selectedDate = this.props.awMoment(nextProps.dateTime, nextProps.format, true);
-      state.inputValue = this.props.awMoment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat ? nextProps.inputFormat : this.state.inputFormat);
+    if (nextProps.dateTime !== this.props.dateTime && this.props.awMoment(nextProps.dateTime, nextProps.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).isValid()) {
+      state.viewDate = this.props.awMoment(nextProps.dateTime, nextProps.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).startOf("month");
+      state.selectedDate = this.props.awMoment(nextProps.dateTime, nextProps.format, true).tz(this.props.locale || this.props.awMoment.tz.guess());
+      state.inputValue = this.props.awMoment(nextProps.dateTime, nextProps.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(nextProps.inputFormat ? nextProps.inputFormat : this.state.inputFormat);
     }
     return this.setState(state);
   }
@@ -91,23 +91,23 @@ export default class DateTimeField extends Component {
 
   onChange = (event) => {
     const value = event.target == null ? event : event.target.value;
-    if (this.props.awMoment(value, this.state.inputFormat, true).isValid()) {
+    if (this.props.awMoment(value, this.state.inputFormat, true).tz(this.props.locale || this.props.awMoment.tz.guess()).isValid()) {
       this.setState({
-        selectedDate: this.props.awMoment(value, this.state.inputFormat, true),
-        viewDate: this.props.awMoment(value, this.state.inputFormat, true).startOf("month")
+        selectedDate: this.props.awMoment(value, this.state.inputFormat, true).tz(this.props.locale || this.props.awMoment.tz.guess()),
+        viewDate: this.props.awMoment(value, this.state.inputFormat, true).tz(this.props.locale || this.props.awMoment.tz.guess()).startOf("month")
       });
     }
 
     return this.setState({
       inputValue: value
     }, function () {
-      return this.props.onChange(this.props.awMoment(this.state.inputValue, this.state.inputFormat, true).format(this.props.format), value);
+      return this.props.onChange(this.props.awMoment(this.state.inputValue, this.state.inputFormat, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.props.format), value);
     });
 
   }
 
   getValue = () => {
-    return this.props.awMoment(this.state.inputValue, this.props.inputFormat, true).format(this.props.format);
+    return this.props.awMoment(this.state.inputValue, this.props.inputFormat, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.props.format);
   }
 
   setSelectedDate = (e) => {
