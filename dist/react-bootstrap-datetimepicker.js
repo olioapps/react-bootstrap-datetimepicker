@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.closePicker();
 	          this.props.onChange(this.state.selectedDate.format(this.props.format));
 	          return this.setState({
-	            inputValue: this.state.selectedDate.format(this.state.inputFormat)
+	            inputValue: this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.state.inputFormat)
 	          });
 	        });
 	      }
@@ -197,9 +197,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        selectedDate: _this.state.selectedDate.clone().hour(parseInt(e.target.innerHTML)).minute(_this.state.selectedDate.minutes())
 	      }, function () {
 	        this.closePicker();
-	        this.props.onChange(this.state.selectedDate.format(this.props.format));
+	        this.props.onChange(this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.props.format));
 	        return this.setState({
-	          inputValue: this.state.selectedDate.format(this.state.inputFormat)
+	          inputValue: this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.state.inputFormat)
 	        });
 	      });
 	    };
@@ -209,9 +209,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        selectedDate: _this.state.selectedDate.clone().hour(_this.state.selectedDate.hours()).minute(parseInt(e.target.innerHTML))
 	      }, function () {
 	        this.closePicker();
-	        this.props.onChange(this.state.selectedDate.format(this.props.format));
+	        this.props.onChange(this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.props.format));
 	        return this.setState({
-	          inputValue: this.state.selectedDate.format(this.state.inputFormat)
+	          inputValue: this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.state.inputFormat)
 	        });
 	      });
 	    };
@@ -232,9 +232,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _this.setState({
 	        selectedDate: _this.state.selectedDate.clone().add(1, "minutes")
 	      }, function () {
-	        this.props.onChange(this.state.selectedDate.format(this.props.format));
+	        this.props.onChange(this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.props.format));
 	        return this.setState({
-	          inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
+	          inputValue: this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
 	        });
 	      });
 	    };
@@ -243,9 +243,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _this.setState({
 	        selectedDate: _this.state.selectedDate.clone().add(1, "hours")
 	      }, function () {
-	        this.props.onChange(this.state.selectedDate.format(this.props.format));
+	        this.props.onChange(this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.props.format));
 	        return this.setState({
-	          inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
+	          inputValue: this.state.selectedDate.tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
 	        });
 	      });
 	    };
@@ -272,9 +272,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _this.setState({
 	        selectedDate: _this.state.selectedDate.clone().subtract(1, "minutes")
 	      }, function () {
-	        _this.props.onChange(_this.state.selectedDate.format(_this.props.format));
+	        _this.props.onChange(_this.state.selectedDate.tz(_this.props.locale || _this.props.awMoment.tz.guess()).format(_this.props.format));
 	        return _this.setState({
-	          inputValue: _this.state.selectedDate.format(_this.resolvePropsInputFormat())
+	          inputValue: _this.state.selectedDate.tz(_this.props.locale || _this.props.awMoment.tz.guess()).format(_this.resolvePropsInputFormat())
 	        });
 	      });
 	    };
@@ -283,9 +283,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _this.setState({
 	        selectedDate: _this.state.selectedDate.clone().subtract(1, "hours")
 	      }, function () {
-	        _this.props.onChange(_this.state.selectedDate.format(_this.props.format));
+	        _this.props.onChange(_this.state.selectedDate.tz(_this.props.locale || _this.props.awMoment.tz.guess()).format(_this.props.format));
 	        return _this.setState({
-	          inputValue: _this.state.selectedDate.format(_this.resolvePropsInputFormat())
+	          inputValue: _this.state.selectedDate.tz(_this.props.locale || _this.props.awMoment.tz.guess()).format(_this.resolvePropsInputFormat())
 	        });
 	      });
 	    };
