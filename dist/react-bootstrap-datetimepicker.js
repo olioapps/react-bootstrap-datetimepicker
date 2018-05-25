@@ -136,7 +136,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      viewDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).startOf("month"),
 	      selectedDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()),
-	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText + "  ARONTEST!" : this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
+	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText : this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
 	    };
 
 	    this.componentWillReceiveProps = function (nextProps) {

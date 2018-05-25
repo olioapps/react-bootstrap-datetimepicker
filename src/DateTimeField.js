@@ -69,7 +69,7 @@ export default class DateTimeField extends Component {
     viewDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).startOf("month"),
     selectedDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()),
     inputValue: typeof this.props.defaultText !== "undefined"
-      ? this.props.defaultText + "  ARONTEST!"
+      ? this.props.defaultText
       : this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
     }
 
