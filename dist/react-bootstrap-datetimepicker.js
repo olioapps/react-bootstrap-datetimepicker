@@ -134,44 +134,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	        left: -9999,
 	        zIndex: "9999 !important"
 	      },
-	      viewDate: (0, _moment2["default"])(this.props.dateTime, this.props.format, true).startOf("month"),
-	      selectedDate: (0, _moment2["default"])(this.props.dateTime, this.props.format, true),
-	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText + " TEST!" : (0, _moment2["default"])(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
+	      viewDate: this.props.awMoment(this.props.dateTime, this.props.format, true).startOf("month"),
+	      selectedDate: this.props.awMoment(this.props.dateTime, this.props.format, true),
+	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText + "  ARONTEST!" : this.props.awMoment(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
 	    };
 
 	    this.componentWillReceiveProps = function (nextProps) {
 	      var state = {};
 	      if (nextProps.inputFormat !== _this.props.inputFormat) {
 	        state.inputFormat = nextProps.inputFormat;
-	        state.inputValue = (0, _moment2["default"])(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
+	        state.inputValue = _this.props.awMoment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
 	      }
 
-	      if (nextProps.dateTime !== _this.props.dateTime && (0, _moment2["default"])(nextProps.dateTime, nextProps.format, true).isValid()) {
-	        state.viewDate = (0, _moment2["default"])(nextProps.dateTime, nextProps.format, true).startOf("month");
-	        state.selectedDate = (0, _moment2["default"])(nextProps.dateTime, nextProps.format, true);
-	        state.inputValue = (0, _moment2["default"])(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat ? nextProps.inputFormat : _this.state.inputFormat);
+	      if (nextProps.dateTime !== _this.props.dateTime && _this.props.awMoment(nextProps.dateTime, nextProps.format, true).isValid()) {
+	        state.viewDate = _this.props.awMoment(nextProps.dateTime, nextProps.format, true).startOf("month");
+	        state.selectedDate = _this.props.awMoment(nextProps.dateTime, nextProps.format, true);
+	        state.inputValue = _this.props.awMoment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat ? nextProps.inputFormat : _this.state.inputFormat);
 	      }
 	      return _this.setState(state);
 	    };
 
 	    this.onChange = function (event) {
 	      var value = event.target == null ? event : event.target.value;
-	      if ((0, _moment2["default"])(value, _this.state.inputFormat, true).isValid()) {
+	      if (_this.props.awMoment(value, _this.state.inputFormat, true).isValid()) {
 	        _this.setState({
-	          selectedDate: (0, _moment2["default"])(value, _this.state.inputFormat, true),
-	          viewDate: (0, _moment2["default"])(value, _this.state.inputFormat, true).startOf("month")
+	          selectedDate: _this.props.awMoment(value, _this.state.inputFormat, true),
+	          viewDate: _this.props.awMoment(value, _this.state.inputFormat, true).startOf("month")
 	        });
 	      }
 
 	      return _this.setState({
 	        inputValue: value
 	      }, function () {
-	        return this.props.onChange((0, _moment2["default"])(this.state.inputValue, this.state.inputFormat, true).format(this.props.format), value);
+	        return this.props.onChange(this.props.awMoment(this.state.inputValue, this.state.inputFormat, true).format(this.props.format), value);
 	      });
 	    };
 
 	    this.getValue = function () {
-	      return (0, _moment2["default"])(_this.state.inputValue, _this.props.inputFormat, true).format(_this.props.format);
+	      return _this.props.awMoment(_this.state.inputValue, _this.props.inputFormat, true).format(_this.props.format);
 	    };
 
 	    this.setSelectedDate = function (e) {
@@ -473,6 +473,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      size: _ConstantsJs2["default"].SIZE_MEDIUM,
 	      mode: _ConstantsJs2["default"].MODE_DATETIME,
 	      zIndex: 999,
+	      awMoment: function awMoment() {},
 	      onChange: function onChange(x) {
 	        console.log(x);
 	      }
@@ -495,7 +496,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      viewMode: _react.PropTypes.string,
 	      zIndex: _react.PropTypes.number,
 	      size: _react.PropTypes.oneOf([_ConstantsJs2["default"].SIZE_SMALL, _ConstantsJs2["default"].SIZE_MEDIUM, _ConstantsJs2["default"].SIZE_LARGE]),
-	      daysOfWeekDisabled: _react.PropTypes.arrayOf(_react.PropTypes.number)
+	      daysOfWeekDisabled: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	      awMoment: _react.PropTypes.func
 	    },
 	    enumerable: true
 	  }]);
