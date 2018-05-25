@@ -137,6 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      viewDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).startOf("month"),
 	      selectedDate: this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()),
 	      inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText + "  ARONTEST!" : this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
+
 	    };
 
 	    this.componentWillReceiveProps = function (nextProps) {
@@ -497,8 +498,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      zIndex: _react.PropTypes.number,
 	      size: _react.PropTypes.oneOf([_ConstantsJs2["default"].SIZE_SMALL, _ConstantsJs2["default"].SIZE_MEDIUM, _ConstantsJs2["default"].SIZE_LARGE]),
 	      daysOfWeekDisabled: _react.PropTypes.arrayOf(_react.PropTypes.number),
-	      awMoment: _react.PropTypes.func
-	    },
+	      awMoment: _react.PropTypes.func,
+	      locale: _react.PropTypes.string },
 	    enumerable: true
 	  }]);
 
@@ -507,6 +508,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports["default"] = DateTimeField;
 	module.exports = exports["default"];
+	// as in geographic location/ timezone!
 
 /***/ }),
 /* 2 */
