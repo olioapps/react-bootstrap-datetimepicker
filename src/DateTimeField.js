@@ -52,6 +52,7 @@ export default class DateTimeField extends Component {
     size: PropTypes.oneOf([Constants.SIZE_SMALL, Constants.SIZE_MEDIUM, Constants.SIZE_LARGE]),
     daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number),
     awMoment: PropTypes.func,
+    locale: PropTypes.string,  // as in geographic location/ timezone!
   }
 
   state = {
@@ -70,7 +71,8 @@ export default class DateTimeField extends Component {
     inputValue: typeof this.props.defaultText !== "undefined"
       ? this.props.defaultText + "  ARONTEST!"
       : this.props.awMoment(this.props.dateTime, this.props.format, true).tz(this.props.locale || this.props.awMoment.tz.guess()).format(this.resolvePropsInputFormat())
-  }
+
+    }
 
   componentWillReceiveProps = (nextProps) => {
     let state = {};
