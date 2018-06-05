@@ -91,9 +91,9 @@ export default class DateTimeField extends Component {
     return this.setState(state);
   }
 
-  componentWillUnmount = () => {
-    this.props.onDestroy()
-  }
+  // componentWillUnmount = () => {
+  //   this.props.onDestroy()
+  // }
 
   onChange = (event) => {
     const value = event.target == null ? event : event.target.value;
@@ -318,6 +318,8 @@ export default class DateTimeField extends Component {
     return this.setState({
       showPicker: false,
       widgetStyle: style
+    }, () => {
+      this.props.onDestroy()
     });
   }
 
