@@ -17,6 +17,8 @@ export default class DateTimeField extends Component {
     awMoment: () => {},
     onChange: (x) => {
       console.log(x);
+    },
+    onDestroy: () => {
     }
   }
 
@@ -52,7 +54,8 @@ export default class DateTimeField extends Component {
     size: PropTypes.oneOf([Constants.SIZE_SMALL, Constants.SIZE_MEDIUM, Constants.SIZE_LARGE]),
     daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number),
     awMoment: PropTypes.func,
-    locale: PropTypes.string  // as in geographic location/ timezone!
+    locale: PropTypes.string, // as in geographic location/ timezone!
+    onDestroy: PropTypes.func,
   }
 
   state = {
@@ -88,7 +91,9 @@ export default class DateTimeField extends Component {
     return this.setState(state);
   }
 
-
+  componentWillUnmount = () => {
+    this.props.onDestroy()
+  }
 
   onChange = (event) => {
     const value = event.target == null ? event : event.target.value;
